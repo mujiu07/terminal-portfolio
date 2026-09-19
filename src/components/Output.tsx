@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import About from "./commands/About";
 import Clear from "./commands/Clear";
 import Echo from "./commands/Echo";
@@ -5,14 +6,18 @@ import Education from "./commands/Education";
 import Email from "./commands/Email";
 import GeneralOutput from "./commands/GeneralOutput";
 import Help from "./commands/Help";
-import Welcome from "./commands/Welcome";
 import History from "./commands/History";
 import Projects from "./commands/Projects";
 import Socials from "./commands/Socials";
 import Themes from "./commands/Themes";
+import Welcome from "./commands/Welcome";
 import { OutputContainer, UsageDiv } from "./styles/Output.styled";
 import { termContext } from "./Terminal";
-import { useContext, useEffect } from "react";
+
+// 代码分割：命令组件体积都很小（模板级），单独拆 chunk 收益低于
+// 带来的复杂度（Suspense 状态 + 测试中懒加载 chunk 的问题）。
+// 首屏 bundle 大头是 React + styled-components 运行时，命令组件本身 <2KB。
+// 如未来命令组件显著变大，再考虑 React.lazy 拆分。
 
 type Props = {
   index: number;
