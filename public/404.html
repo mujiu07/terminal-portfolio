@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 Not Found — mujiu.net</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1D2A35">
+<style>
+  :root { color-scheme: dark; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    background: #1D2A35;
+    color: #E8EAED;
+    font-family: 'IBM Plex Mono', Menlo, Consolas, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', monospace;
+    font-size: 15px;
+    line-height: 1.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+  .box { width: 100%; max-width: 640px; }
+  .bar { display: flex; gap: 8px; margin-bottom: 20px; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .dot.r { background: #FF5F56; }
+  .dot.y { background: #FFBD2E; }
+  .dot.g { background: #27C93F; }
+  .prompt { color: #7FB3D5; }
+  .cmd { color: #F7DC6F; }
+  .err { color: #E74C3C; }
+  .note { color: #8B9BA8; font-size: 13px; }
+  a { color: #5DADE2; text-decoration: none; border-bottom: 1px dashed #5DADE2; }
+  a:hover { color: #85C1E9; border-bottom-style: solid; }
+  .line { margin-top: 4px; }
+  .cursor { display: inline-block; width: 8px; height: 15px; background: #E8EAED; vertical-align: -2px; animation: blink 1.1s steps(1) infinite; }
+  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
+</style>
+</head>
+<body>
+<main class="box">
+  <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+  <div><span class="prompt">visitor@mujiu:~$</span> <span class="cmd">cat</span> /var/www/mujiu-portfolio<span id="requested-path"></span></div>
+  <div class="err">cat: No such file or directory</div>
+  <div class="note">404 Not Found — 这个路径不存在。</div>
+  <div class="line"><span class="prompt">visitor@mujiu:~$</span> <span class="cmd">cd</span> <a href="/">~ 返回首页</a></div>
+  <div class="line"><span class="prompt">visitor@mujiu:~$</span> <a href="/#help">help</a> <span class="note">查看可用命令</span></div>
+  <div class="line"><span class="prompt">visitor@mujiu:~$</span> <span class="cursor"></span></div>
+</main>
+<script>
+  (function () {
+    try {
+      var seg = decodeURIComponent(location.pathname)
+        .replace(/[<>"'`]/g, '')
+        .replace(/^\/+/, '');
+      if (seg) {
+        var el = document.getElementById('requested-path');
+        el.textContent = '/' + seg;
+      }
+    } catch (e) { /* 忽略非法编码 */ }
+  })();
+</script>
+</body>
+</html>
