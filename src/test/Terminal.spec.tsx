@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { UserEvent } from "@testing-library/user-event/dist/types/setup/setup";
-import { render, screen, userEvent } from "../utils/test-utils";
+import { render, screen, userEvent, waitFor } from "../utils/test-utils";
 import Terminal, { commands } from "../components/Terminal";
 
 // setup function
@@ -54,10 +54,10 @@ describe("Terminal Component", () => {
       );
     });
 
-    it("should return '/home/satnaing' when user type 'pwd' cmd", async () => {
+    it("should return '/home/mujiu' when user type 'pwd' cmd", async () => {
       await user.type(terminalInput, "pwd{enter}");
       expect(screen.getByTestId("latest-output").firstChild?.textContent).toBe(
-        "/home/satnaing"
+        "/home/mujiu"
       );
     });
 
@@ -140,9 +140,10 @@ describe("Terminal Component", () => {
 
     it("should redirect to portfolio website when user type 'gui' cmd", async () => {
       await user.type(terminalInput, "gui{enter}");
-      expect(window.open).toHaveBeenCalled();
+      // Gui 组件先给出跳转提示，300ms 后才真正 window.open
+      await waitFor(() => expect(window.open).toHaveBeenCalled());
       expect(screen.getByTestId("latest-output").firstChild?.textContent).toBe(
-        ""
+        "redirecting to gui.mujiu.net ..."
       );
     });
 
@@ -150,7 +151,7 @@ describe("Terminal Component", () => {
       await user.type(terminalInput, "email{enter}");
       expect(window.open).toHaveBeenCalled();
       expect(screen.getByTestId("latest-output").firstChild?.textContent).toBe(
-        "contact@satnaing.dev"
+        "inbox@mujiu.net"
       );
     });
 
@@ -162,7 +163,9 @@ describe("Terminal Component", () => {
       });
     });
 
-    nums.forEach(num => {
+    // socials 目前只有 1 个条目（GitHub），序号只到 1
+    const socialNums = [1];
+    socialNums.forEach(num => {
       it(`should redirect to social media when user type 'socials go ${num}' cmd`, async () => {
         await user.type(terminalInput, `socials go ${num}{enter}`);
         expect(window.open).toHaveBeenCalled();
@@ -203,7 +206,7 @@ describe("Terminal Component", () => {
 
         // firstly run commands correct options
         await user.type(terminalInput, `projects go 4{enter}`);
-        await user.type(terminalInput, `socials go 4{enter}`);
+        await user.type(terminalInput, `socials go 1{enter}`);
         await user.type(terminalInput, `themes set espresso{enter}`);
 
         // then run cmd with incorrect options

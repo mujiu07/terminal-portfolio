@@ -14,8 +14,11 @@ import {
   Form,
   Hints,
   Input,
+  InputArea,
   MobileBr,
   MobileSpan,
+  QuickCmd,
+  QuickCmds,
   Wrapper,
 } from "./styles/Terminal.styled";
 import { argTab } from "../utils/funcs";
@@ -60,6 +63,22 @@ export const termContext = createContext<Term>({
   index: 0,
 });
 
+/**
+ * 触屏/移动端可点击的快捷命令。
+ * 终端原本只支持 Tab 补全、↑ 历史和 Ctrl+l，手机上没有这些键，
+ * 所以给一份可直接点按的常用命令，降低首次使用门槛。
+ */
+const quickCommands = [
+  "about",
+  "projects",
+  "education",
+  "socials",
+  "ask",
+  "game",
+  "themes",
+  "help",
+];
+
 const Terminal = () => {
   const containerRef = useRef(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -85,6 +104,16 @@ const Terminal = () => {
     setRerender(true);
     setHints([]);
     setPointer(-1);
+  };
+
+  // 点击快捷命令，效果等同于手动输入该命令并回车
+  const runQuickCmd = (cmd: string) => {
+    setCmdHistory(prev => [cmd, ...prev]);
+    setInputVal("");
+    setRerender(true);
+    setHints([]);
+    setPointer(-1);
+    inputRef.current && inputRef.current.focus();
   };
 
   const clearHistory = () => {
@@ -190,25 +219,40 @@ const Terminal = () => {
           ))}
         </div>
       )}
-      <Form onSubmit={handleSubmit}>
-        <label htmlFor="terminal-input">
-          <TermInfo /> <MobileBr />
-          <MobileSpan>&#62;</MobileSpan>
-        </label>
-        <Input
-          title="terminal-input"
-          type="text"
-          id="terminal-input"
-          autoComplete="off"
-          spellCheck="false"
-          autoFocus
-          autoCapitalize="off"
-          ref={inputRef}
-          value={inputVal}
-          onKeyDown={handleKeyDown}
-          onChange={handleChange}
-        />
-      </Form>
+      <InputArea>
+        <QuickCmds data-testid="quick-commands">
+          {quickCommands.map(cmd => (
+            <QuickCmd
+              key={cmd}
+              type="button"
+              title={`执行 ${cmd}`}
+              onClick={() => runQuickCmd(cmd)}
+            >
+              {cmd}
+            </QuickCmd>
+          ))}
+        </QuickCmds>
+
+        <Form onSubmit={handleSubmit}>
+          <label htmlFor="terminal-input">
+            <TermInfo /> <MobileBr />
+            <MobileSpan>&#62;</MobileSpan>
+          </label>
+          <Input
+            title="terminal-input"
+            type="text"
+            id="terminal-input"
+            autoComplete="off"
+            spellCheck="false"
+            autoFocus
+            autoCapitalize="off"
+            ref={inputRef}
+            value={inputVal}
+            onKeyDown={handleKeyDown}
+            onChange={handleChange}
+          />
+        </Form>
+      </InputArea>
 
       {cmdHistory.map((cmdH, index) => {
         const commandArray = _.split(_.trim(cmdH), " ");

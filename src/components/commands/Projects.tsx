@@ -56,9 +56,27 @@ const Projects: React.FC = () => {
 const projects = [
   {
     id: 1,
-    title: "Personal Portfolio",
-    desc: "My terminal-style personal portfolio website.",
+    title: "mujiu.net · Terminal Portfolio",
+    desc: "本站：仿终端交互式个人主页，React + Vite + PWA，支持命令补全、多主题切换与离线访问。",
     url: "https://mujiu.net",
+  },
+  {
+    id: 2,
+    title: "mujiu Games · 网页小游戏合集",
+    desc: "8 个轻量网页小游戏，无需安装、打开即玩，适合摸鱼或和朋友对战。",
+    url: "https://game.mujiu.net",
+  },
+  {
+    id: 3,
+    title: "Anonymous Inbox · 匿名信箱",
+    desc: "带频率限制和 XSS 转义的匿名留言服务，欢迎来提问、吐槽或反馈。",
+    url: "https://ask.mujiu.net",
+  },
+  {
+    id: 4,
+    title: "GUI Homepage · 图形版主页",
+    desc: "同一份个人主页的图形界面版本，与终端版共享配色与身份信息。",
+    url: "https://gui.mujiu.net",
   },
 ];
 

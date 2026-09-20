@@ -5,52 +5,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- Primary Meta Tags -->
-    <title>mujiu's Terminal Portfolio</title>
-    <meta name="title" content="mujiu's Terminal Portfolio" />
+    <title>mujiu.net —— 终端风格个人主页 | mujiu's Terminal Portfolio</title>
+    <meta
+      name="title"
+      content="mujiu.net —— 终端风格个人主页 | mujiu's Terminal Portfolio"
+    />
     <meta
       name="description"
-      content="mujiu's terminal portfolio website built with React."
+      content="mujiu 的个人主页：仿终端的交互式作品集，可输入 about、projects、education、socials 等命令浏览项目、教育背景和联系方式，并提供小游戏合集与匿名信箱入口。"
     />
+    <meta
+      name="keywords"
+      content="mujiu, mujiu.net, 终端风格主页, terminal portfolio, 个人作品集, 樊旭阳"
+    />
+    <meta name="author" content="mujiu" />
+    <link rel="canonical" href="https://mujiu.net/" />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://mujiu.net/" />
-    <meta property="og:title" content="mujiu's Terminal Portfolio" />
+    <meta property="og:site_name" content="mujiu.net" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta
+      property="og:title"
+      content="mujiu.net —— 终端风格个人主页 | mujiu's Terminal Portfolio"
+    />
     <meta
       property="og:description"
-      content="mujiu's terminal portfolio website built with React."
+      content="mujiu 的个人主页：仿终端的交互式作品集，可输入 about、projects、education、socials 等命令浏览项目、教育背景和联系方式，并提供小游戏合集与匿名信箱入口。"
     />
-    <meta
-      property="og:image"
-      content="https://mujiu.net/og.png"
-    />
+    <meta property="og:image" content="https://mujiu.net/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="mujiu.net 终端风格个人主页预览" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://mujiu.net/" />
-    <meta property="twitter:title" content="mujiu's Terminal Portfolio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://mujiu.net/" />
     <meta
-      property="twitter:description"
-      content="mujiu's terminal portfolio website built with React."
+      name="twitter:title"
+      content="mujiu.net —— 终端风格个人主页 | mujiu's Terminal Portfolio"
     />
     <meta
-      property="twitter:image"
-      content="https://mujiu.net/og.png"
+      name="twitter:description"
+      content="mujiu 的个人主页：仿终端的交互式作品集，可输入 about、projects、education、socials 等命令浏览项目、教育背景和联系方式，并提供小游戏合集与匿名信箱入口。"
     />
+    <meta name="twitter:image" content="https://mujiu.net/og.png" />
 
     <!-- Favicons and assets -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="mask-icon" color="#1d2a35" />
+    <!-- manifest 由 vite-plugin-pwa 自动注入，不要手写，否则会重复两个 manifest 标签 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="mujiu" />
+    <meta name="application-name" content="mujiu" />
     <meta name="msapplication-TileColor" content="#1d2a35" />
     <meta name="theme-color" content="#1d2a35" />
+
+    <!-- 结构化数据：让搜索引擎知道这是一个个人站点 -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "mujiu.net",
+        "alternateName": "mujiu's Terminal Portfolio",
+        "url": "https://mujiu.net/",
+        "inLanguage": "zh-CN",
+        "description": "mujiu 的个人主页：仿终端的交互式作品集，可输入命令浏览项目、教育背景和联系方式。",
+        "author": {
+          "@type": "Person",
+          "name": "mujiu",
+          "url": "https://mujiu.net/",
+          "sameAs": ["https://github.com/mujiu07"]
+        }
+      }
+    </script>
 
     <!-- Self-hosted IBM Plex Mono is imported in src/main.tsx (bundled into /assets, font-display: swap) -->
   </head>
   <body>
     <div id="root"></div>
+    <noscript>
+      <div
+        style="
+          font-family: monospace;
+          background: #1d2a35;
+          color: #cbd5e1;
+          padding: 2rem;
+          line-height: 1.8;
+        "
+      >
+        <h1 style="font-size: 1.25rem; color: #05ce91">mujiu.net</h1>
+        <p>
+          本站是仿终端交互式个人主页，需要开启 JavaScript 才能浏览。
+          你也可以直接访问以下内容：
+        </p>
+        <ul>
+          <li><a href="https://mujiu.net/" style="color: #ff9d00">主页（需 JavaScript）</a></li>
+          <li><a href="https://game.mujiu.net" style="color: #ff9d00">网页小游戏合集</a></li>
+          <li><a href="https://ask.mujiu.net" style="color: #ff9d00">匿名信箱</a></li>
+          <li><a href="https://gui.mujiu.net" style="color: #ff9d00">图形版主页</a></li>
+          <li><a href="https://github.com/mujiu07" style="color: #ff9d00">GitHub</a></li>
+        </ul>
+      </div>
+    </noscript>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

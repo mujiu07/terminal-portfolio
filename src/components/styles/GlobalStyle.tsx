@@ -26,7 +26,10 @@ const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
   }
 
   body {
-    font-family: 'IBM Plex Mono', monospace;
+    /* IBM Plex Mono 不含中文字形，显式补上中文回退字体，
+       避免中文落到浏览器默认衬线/黑体，风格与终端主题脱节。 */
+    font-family: 'IBM Plex Mono', Menlo, Consolas, 'PingFang SC',
+      'Hiragino Sans GB', 'Microsoft YaHei', monospace;
     font-weight: 500;
     background-color: ${({ theme }) => theme.colors?.body};
     color: ${({ theme }) => theme.colors?.text[100]};

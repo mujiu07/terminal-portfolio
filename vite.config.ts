@@ -11,6 +11,9 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: "autoUpdate",
+      // PWA 规范强制 manifest 键名为 snake_case（short_name / start_url /
+      // background_color / theme_color），camelcase 规则在此属于误报。
+      /* eslint-disable camelcase */
       manifest: {
         name: "mujiu's Terminal Portfolio",
         short_name: "mujiu",
@@ -39,12 +42,13 @@ export default defineConfig({
           },
         ],
       },
+      /* eslint-enable camelcase */
       workbox: {
         globPatterns: ["**/*.{js,css,html,woff2,svg,png}"],
         navigateFallbackDenylist: [/^\/api/],
         runtimeCaching: [
           {
-            urlPattern: /\.[\w]+\/assets\/.*\.js$/,
+            urlPattern: /\/assets\/.*\.js$/,
             method: "GET",
             handler: "CacheFirst",
             options: {
@@ -54,7 +58,7 @@ export default defineConfig({
             },
           },
           {
-            urlPattern: /\.[\w]+\/assets\/.*\.css$/,
+            urlPattern: /\/assets\/.*\.css$/,
             method: "GET",
             handler: "CacheFirst",
             options: {

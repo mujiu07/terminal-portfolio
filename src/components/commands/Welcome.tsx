@@ -49,6 +49,9 @@ const Welcome: React.FC = () => {
         <div>
           For a list of available commands, type `<Cmd>help</Cmd>`.
         </div>
+        <div>
+          <Cmd>提示</Cmd>：也可以直接点击输入框上方的命令按钮快速浏览。
+        </div>
       </div>
       <div className="illu-section">
         <PreImg>

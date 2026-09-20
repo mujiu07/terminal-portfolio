@@ -17,6 +17,16 @@ const About: React.FC = () => {
         I am passionate about CTF, AI and <br />
         building interesting web services.
       </p>
+      <p>
+        Currently studying at <HighlightSpan>Tianjin University</HighlightSpan>{" "}
+        &amp; <HighlightSpan>PolyU Shenzhen</HighlightSpan>.
+      </p>
+      <p>
+        This site is my terminal-style playground. <br />
+        Try <HighlightAlt>projects</HighlightAlt>,{" "}
+        <HighlightAlt>education</HighlightAlt>, or leave me a note via{" "}
+        <HighlightAlt>ask</HighlightAlt>.
+      </p>
     </AboutWrapper>
   );
 };

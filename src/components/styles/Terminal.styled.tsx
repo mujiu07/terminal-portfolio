@@ -48,6 +48,37 @@ export const Input = styled.input`
   }
 `;
 
+/* ===== 输入区：快捷命令 + 输入行 作为一个整体 ===== */
+export const InputArea = styled.div``;
+
 export const Hints = styled.span`
   margin-right: 0.875rem;
+`;
+
+/* ===== 移动端/触屏可点击的快捷命令 ===== */
+export const QuickCmds = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+`;
+
+export const QuickCmd = styled.button`
+  font-family: inherit;
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  cursor: pointer;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid ${({ theme }) => theme.colors?.text[300]};
+  background: transparent;
+  color: ${({ theme }) => theme.colors?.text[200]};
+  transition: color 0.15s ease, border-color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: ${({ theme }) => theme.colors?.primary};
+    border-color: ${({ theme }) => theme.colors?.primary};
+  }
 `;
